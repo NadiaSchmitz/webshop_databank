@@ -18,10 +18,10 @@ public class DBZugriff {
 				
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("Treiber erfolgreich geladen.");
+			System.out.println("Treiber erfolgreich geladen." + "\n");
 		}
 		catch(Exception e) {
-			System.out.println("Fehler beim Treiberladen.");
+			System.out.println("Fehler beim Treiberladen." + "\n");
 		}
 		
 	}
