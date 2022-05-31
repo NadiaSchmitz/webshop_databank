@@ -1,19 +1,19 @@
 
-public class Kunde {
+public class Kuenstler {
 
-	private int kunde_Nr;
+	private int kuenstler_Nr;
 	private String vorname;
 	private String nachname;
 	private String adresse;
 	private int plz;
 	private String wohnort;
 	
-	public Kunde() {
+	public Kuenstler() {
 		
 	}
 	
-	public Kunde(int kunde_Nr, String vorname, String nachname, String adresse, int plz, String wohnort) {
-		this.kunde_Nr = kunde_Nr;
+	public Kuenstler(int kuenstler_Nr, String vorname, String nachname, String adresse, int plz, String wohnort) {
+		this.kuenstler_Nr = kuenstler_Nr;
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.adresse = adresse;
@@ -21,12 +21,12 @@ public class Kunde {
 		this.wohnort = wohnort;
 	}
 
-	public int getKunde_Nr() {
-		return kunde_Nr;
+	public int getKuenstler_Nr() {
+		return kuenstler_Nr;
 	}
 
-	public void setKunde_Nr(int kunde_Nr) {
-		this.kunde_Nr = kunde_Nr;
+	public void setKuenstler_Nr(int kuenstler_Nr) {
+		this.kuenstler_Nr = kuenstler_Nr;
 	}
 
 	public String getVorname() {

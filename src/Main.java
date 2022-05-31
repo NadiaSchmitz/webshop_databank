@@ -10,20 +10,17 @@ public class Main {
 		DBZugriff dbzugriff = new DBZugriff();
 		
 		// Verbindungstest
-		//System.out.println("Tragen Sie bitte Nutzername ein: ");
 		nutzer_name = IOTools.readString("Geben Sie Nutzername ein: ");
 		passwort = IOTools.readString("Geben Sie Passwort ein: ");
 		
-		dbzugriff.openConnection(nutzer_name, passwort); // existiert, pass +
+		dbzugriff.openConnection(nutzer_name, passwort); 
 		dbzugriff.closeConnection(nutzer_name);
-		//dbzugriff.openConnection("admin", "000"); // existiert, pass -
-		//dbzugriff.openConnection("kunde", "123"); // existiert, pass +
-		//dbzugriff.openConnection("unbekannt", "000"); // existiert nicht
 		
-		//dbzugriff.closeConnection("admin");
-		
-		//dbzugriff.openConnection("admin", "123456");
 		//dbzugriff.databankAbfrage("SELECT tb_kunde.Vorname FROM tb_kunde WHERE Nachname = 'Müller';");
+
+		
+		
+		// import java.util.Date;
 
 	}
 

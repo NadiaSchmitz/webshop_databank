@@ -8,22 +8,20 @@ public class DBZugriff {
 	private final String url = "jdbc:mysql://127.0.0.1:3306";
 	private String nutzer;
 	private String passwort;
-	private String databank = "webshop";
+	private String databank = "atelier";
 	private String befehl;
 	Connection my_connection;
 	private boolean verbindungsstand;
 	
 	// Konstruktoren
 	public DBZugriff() {
-				
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("Treiber erfolgreich geladen." + "\n");
 		}
 		catch(Exception e) {
 			System.out.println("Fehler beim Treiberladen." + "\n");
-		}
-		
+		}	
 	}
 
 	// Getters und Setters
@@ -82,13 +80,9 @@ public class DBZugriff {
 			verbindungsstand = false;
 		}
 		
-		System.out.println(verbindungsstand);
+		System.out.printf(" %-10s %-10s %-20 \n", "Nutzer Name", "Passwort", "Verbindung");
+		System.out.printf(" %-10s %-10s %-20 \n", nutzer, passwort, verbindungsstand);
 		
-		if(verbindungsstand) {
-			System.out.println("Verbinding für den Nutzer " + nutzer + " passwort " + passwort + " erfolgreich aufgebaut.");
-		} else {
-			System.out.println("Verbinding für den Nutzer " + nutzer + " passwort " + passwort + " wurde nicht aufgebaut.");
-		}
 		return verbindungsstand;
 	}
 	
@@ -102,19 +96,12 @@ public class DBZugriff {
 			verbindungsstand = true;
 		}
 		
-		System.out.println(verbindungsstand);
-		
-		if(verbindungsstand) {
-			System.out.println("Verbinding für den Nutzer " + nutzer + " geöffnet.");
-		} else {
-			System.out.println("Verbinding für den Nutzer " + nutzer + " geschlossen.");
-		}
-		
+		System.out.printf(" %-10s %-10s %-20 \n", "Nutzer Name", "Passwort", "Verbindung");
+		System.out.printf(" %-10s %-10s %-20 \n", nutzer, passwort, verbindungsstand);
 	}
 	
 	// Abfragen
 	public void databankAbfrage(String befehl) {
-		
 		this.befehl = befehl;
 		
 		try {
