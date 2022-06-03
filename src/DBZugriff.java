@@ -81,7 +81,9 @@ public class DBZugriff {
 	}
 
 	// Methoden
-	// OpenConnection - überprüft Nutzer und baut Verbindung auf
+	// OpenConnection - überprüft Nutzer und baut Verbindung auf. 
+	// Wird auch Methode verbindungsstandberichtText() benutzt, um nutzer-
+	// freundliche Ausgabe zu entwickeln
 	public boolean openConnection(String nutzer, String passwort) {
 		try {
 			my_connection = DriverManager.getConnection(url, nutzer, passwort);
@@ -97,16 +99,6 @@ public class DBZugriff {
 		return verbindungsstand;
 	}
 	
-	// Verbindungsstandbericht
-	public String verbindungsstandberichtText() {
-		if (verbindungsstand) {
-			verbindungsstandbericht = "Verbindung ist geöffnet.";
-		} else {
-			verbindungsstandbericht = "Verbindung ist geschlossen.";
-		}
-		return verbindungsstandbericht;
-	}
-	
 	// CloseConnection, schließt Verbindung für einen bestimmten Nutzer
 	public void closeConnection(String nutzer) {
 		try {
@@ -118,6 +110,16 @@ public class DBZugriff {
 		}
 		System.out.println("Nutzer Name: " + nutzer);
 		System.out.println("Verbindung: " + verbindungsstandberichtText());
+	}
+	
+	// Verbindungsstandbericht
+	public String verbindungsstandberichtText() {
+		if (verbindungsstand) {
+			verbindungsstandbericht = "Verbindung ist geöffnet.";
+		} else {
+			verbindungsstandbericht = "Verbindung ist geschlossen.";
+		}
+		return verbindungsstandbericht;
 	}
 	
 	// Abfragen Tabelle Künstler und Bilder
@@ -136,6 +138,7 @@ public class DBZugriff {
 			
 			String result = "";
 			
+			// Block für SELECT Abfrage - dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
 			System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", "Kunstler_Nr", "Vorname", "Nachname", "Adresse", "PLZ", "Wohnort");
 			while (my_result.next()) {
 				result = result.concat("\n" + my_result.getInt("Künstler_nr") + "  " +  my_result.getString("Vorname") + "  " + my_result.getString("Nachname") + "  " + my_result.getString("Adresse") + "  " + my_result.getInt("PLZ") + "  " + my_result.getString("Wohnort"));
@@ -146,6 +149,7 @@ public class DBZugriff {
 			System.out.println();
 			
 			
+			// Block für SELECT Abfrage - dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM künstler;");			
 //			System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", "Bild_Nr", "Titel", "Künstler_Nr", "Breite", "Höhe", "Preis");
 //			while (my_result.next()) {
 //				result = result.concat("\n" + my_result.getInt("Bild_Nr") + "  " +  my_result.getString("Titel") + "  " + my_result.getInt("Künstler") + "  " + my_result.getInt("Breite") + "  " + my_result.getInt("Höhe") + "  " + my_result.getDouble("Preis"));
@@ -154,8 +158,6 @@ public class DBZugriff {
 //			
 //			System.out.println();
 //			System.out.println();
-			
-			
 			
 			closeConnection(nutzer);	
 		}
@@ -167,7 +169,6 @@ public class DBZugriff {
 	
 	// Manipulationen
 	public boolean manipulationDBZugriff(String nutzer, String passwort, String befehl) {
-		
 		boolean result;
 		this.nutzer = nutzer;
 		this.passwort = passwort;

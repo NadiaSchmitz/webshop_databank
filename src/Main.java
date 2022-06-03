@@ -10,16 +10,11 @@ public class Main {
 		DBZugriff dbzugriff = new DBZugriff();
 		
 		// Verbindungstest
-		
 		dbzugriff.openConnection("admin", "123456"); 
-
 		dbzugriff.closeConnection("admin");
 		
-		
-		//DBZugriff abfrage_1 = new DBZugriff("admin", "123456", "SELECT * FROM kunde WHERE kunde.Nachname = 'Maler';");
-		//DBZugriff abfrage_2 = new DBZugriff("admin", "123456", "SELECT * FROM künstlerinnen;");
-
-		//dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
+		// SELECT Abfrage - ein soll kommentiert werden
+		dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
 		//dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM künstler;");
 		
 		dbzugriff.manipulationDBZugriff("admin", "123456", "INSERT INTO bilder(Bild_Nr,Titel,Künstler,Breite,Höhe,Preis) VALUES(6,\"Sommer\", 2, 30, 30, 65);");
