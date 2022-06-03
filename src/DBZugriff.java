@@ -139,10 +139,17 @@ public class DBZugriff {
 			String result = "";
 			
 			// Block für SELECT Abfrage - dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
-			System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", "Kunstler_Nr", "Vorname", "Nachname", "Adresse", "PLZ", "Wohnort");
+			System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", "Kunstler_Nr", "Vorname", 
+					"Nachname", "Adresse", "PLZ", "Wohnort");
 			while (my_result.next()) {
-				result = result.concat("\n" + my_result.getInt("Künstler_nr") + "  " +  my_result.getString("Vorname") + "  " + my_result.getString("Nachname") + "  " + my_result.getString("Adresse") + "  " + my_result.getInt("PLZ") + "  " + my_result.getString("Wohnort"));
-				System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", my_result.getInt("Künstler_Nr"), my_result.getString("Vorname"), my_result.getString("Nachname"), my_result.getString("Adresse"), my_result.getInt("PLZ"), my_result.getString("Wohnort"));
+				result = result.concat("\n" + my_result.getInt("Künstler_nr") + "  " 
+				+  my_result.getString("Vorname") + "  " + my_result.getString("Nachname") + "  " 
+				+ my_result.getString("Adresse") + "  " + my_result.getInt("PLZ") + "  " 
+				+ my_result.getString("Wohnort"));
+				System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", 
+						my_result.getInt("Künstler_Nr"), my_result.getString("Vorname"), 
+						my_result.getString("Nachname"), my_result.getString("Adresse"), 
+						my_result.getInt("PLZ"), my_result.getString("Wohnort"));
 			}
 			
 			System.out.println();
@@ -152,8 +159,14 @@ public class DBZugriff {
 			// Block für SELECT Abfrage - dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM künstler;");			
 //			System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", "Bild_Nr", "Titel", "Künstler_Nr", "Breite", "Höhe", "Preis");
 //			while (my_result.next()) {
-//				result = result.concat("\n" + my_result.getInt("Bild_Nr") + "  " +  my_result.getString("Titel") + "  " + my_result.getInt("Künstler") + "  " + my_result.getInt("Breite") + "  " + my_result.getInt("Höhe") + "  " + my_result.getDouble("Preis"));
-//				System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", my_result.getInt("Bild_Nr"), my_result.getString("Titel"), my_result.getInt("Künstler"), my_result.getInt("Breite"), my_result.getInt("Höhe"), my_result.getDouble("Preis"));
+//				result = result.concat("\n" + my_result.getInt("Bild_Nr") + "  " 
+//				+  my_result.getString("Titel") + "  " + my_result.getInt("Künstler") + "  " 
+//				+ my_result.getInt("Breite") + "  " + my_result.getInt("Höhe") + "  " 
+//				+ my_result.getDouble("Preis"));
+//				System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", 
+//						my_result.getInt("Bild_Nr"), my_result.getString("Titel"), 
+//						my_result.getInt("Künstler"), my_result.getInt("Breite"), 
+//						my_result.getInt("Höhe"), my_result.getDouble("Preis"));
 //			}
 //			
 //			System.out.println();
