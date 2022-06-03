@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import Prog1Tools.IOTools;
+
 public class DBZugriff {
 
 	private final String url = "jdbc:mysql://127.0.0.1:3306";
@@ -12,6 +14,7 @@ public class DBZugriff {
 	private String befehl;
 	Connection my_connection;
 	private boolean verbindungsstand;
+	private String verbindungsstandbericht;
 	
 	// Konstruktoren
 	public DBZugriff() {
@@ -69,6 +72,14 @@ public class DBZugriff {
 		this.verbindungsstand = verbindungsstand;
 	}
 
+	public String getVerbindungsstandbericht() {
+		return verbindungsstandbericht;
+	}
+
+	public void setVerbindungsstandbericht(String verbindungsstandbericht) {
+		this.verbindungsstandbericht = verbindungsstandbericht;
+	}
+
 	// Methoden
 	// OpenConnection - überprüft Nutzer und baut Verbindung auf
 	public boolean openConnection(String nutzer, String passwort) {
@@ -79,11 +90,21 @@ public class DBZugriff {
 		catch(Exception e) {
 			verbindungsstand = false;
 		}
-		
-		System.out.printf(" %-10s %-10s %-20 \n", "Nutzer Name", "Passwort", "Verbindung");
-		System.out.printf(" %-10s %-10s %-20 \n", nutzer, passwort, verbindungsstand);
+		System.out.println("Nutzer Name: " + nutzer);
+		System.out.println("Passwort: " + passwort);
+		System.out.println("Verbindung: " + verbindungsstandberichtText());
 		
 		return verbindungsstand;
+	}
+	
+	// Verbindungsstandbericht
+	public String verbindungsstandberichtText() {
+		if (verbindungsstand) {
+			verbindungsstandbericht = "Verbindung ist geöffnet.";
+		} else {
+			verbindungsstandbericht = "Verbindung ist geschlossen.";
+		}
+		return verbindungsstandbericht;
 	}
 	
 	// CloseConnection, schließt Verbindung für einen bestimmten Nutzer
@@ -95,29 +116,82 @@ public class DBZugriff {
 		catch(Exception e) {
 			verbindungsstand = true;
 		}
-		
-		System.out.printf(" %-10s %-10s %-20 \n", "Nutzer Name", "Passwort", "Verbindung");
-		System.out.printf(" %-10s %-10s %-20 \n", nutzer, passwort, verbindungsstand);
+		System.out.println("Nutzer Name: " + nutzer);
+		System.out.println("Verbindung: " + verbindungsstandberichtText());
 	}
 	
-	// Abfragen
-	public void databankAbfrage(String befehl) {
+	// Abfragen Tabelle Künstler und Bilder
+	public void anfrageDBZugriff(String nutzer, String passwort, String befehl) {
+		this.nutzer = nutzer;
+		this.passwort = passwort;
 		this.befehl = befehl;
 		
 		try {
+			openConnection(nutzer, passwort);
+			
 			Statement my_statement = my_connection.createStatement();
 			my_statement.execute("USE " + databank);
 			
 			ResultSet my_result = my_statement.executeQuery(befehl);
-			String result = "1";
-			System.out.println(befehl);
-			System.out.println(result);
+			
+			String result = "";
+			
+			System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", "Kunstler_Nr", "Vorname", "Nachname", "Adresse", "PLZ", "Wohnort");
+			while (my_result.next()) {
+				result = result.concat("\n" + my_result.getInt("Künstler_nr") + "  " +  my_result.getString("Vorname") + "  " + my_result.getString("Nachname") + "  " + my_result.getString("Adresse") + "  " + my_result.getInt("PLZ") + "  " + my_result.getString("Wohnort"));
+				System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", my_result.getInt("Künstler_Nr"), my_result.getString("Vorname"), my_result.getString("Nachname"), my_result.getString("Adresse"), my_result.getInt("PLZ"), my_result.getString("Wohnort"));
+			}
+			
+			System.out.println();
+			System.out.println();
+			
+			
+//			System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", "Bild_Nr", "Titel", "Künstler_Nr", "Breite", "Höhe", "Preis");
+//			while (my_result.next()) {
+//				result = result.concat("\n" + my_result.getInt("Bild_Nr") + "  " +  my_result.getString("Titel") + "  " + my_result.getInt("Künstler") + "  " + my_result.getInt("Breite") + "  " + my_result.getInt("Höhe") + "  " + my_result.getDouble("Preis"));
+//				System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", my_result.getInt("Bild_Nr"), my_result.getString("Titel"), my_result.getInt("Künstler"), my_result.getInt("Breite"), my_result.getInt("Höhe"), my_result.getDouble("Preis"));
+//			}
+//			
+//			System.out.println();
+//			System.out.println();
+			
+			
+			
+			closeConnection(nutzer);	
+		}
+		catch(Exception e) {
+			System.out.println("Es ist ein Fehler aufgetreten.");
+		}
+		
+	}
+	
+	// Manipulationen
+	public boolean manipulationDBZugriff(String nutzer, String passwort, String befehl) {
+		
+		boolean result;
+		this.nutzer = nutzer;
+		this.passwort = passwort;
+		this.befehl = befehl;
+		
+		try {
+			openConnection(nutzer, passwort);
+			
+			Statement my_statement = my_connection.createStatement();
+			my_statement.execute("USE " + databank);
+			
+			my_statement.executeUpdate(befehl);
+			
+			result = true;
+			System.out.println("Update war erfolgreich.");
+			
+			closeConnection(nutzer);	
 			
 		}
 		catch(Exception e) {
-			
+			result = false;
+			System.out.println("Es ist ein Fehler beim Update aufgetreten.");
 		}
-		
+		return result;
 	}
 	
 	

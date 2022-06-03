@@ -12,6 +12,10 @@ public class Kuenstler {
 		
 	}
 	
+	public Kuenstler(int kuenstler_Nr) {
+		this.kuenstler_Nr = kuenstler_Nr;
+	}
+	
 	public Kuenstler(int kuenstler_Nr, String vorname, String nachname, String adresse, int plz, String wohnort) {
 		this.kuenstler_Nr = kuenstler_Nr;
 		this.vorname = vorname;
