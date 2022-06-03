@@ -14,8 +14,9 @@ public class Main {
 		dbzugriff.closeConnection("admin");
 		
 		// SELECT Abfrage - ein soll kommentiert werden
-		dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
-		//dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM künstler;");
+		dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM künstler;");
+		//dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
+		
 		
 		dbzugriff.manipulationDBZugriff("admin", "123456", "INSERT INTO bilder(Bild_Nr,Titel,Künstler,Breite,Höhe,Preis) VALUES(6,\"Sommer\", 2, 30, 30, 65);");
 		dbzugriff.manipulationDBZugriff("admin", "123456", "UPDATE bilder SET Preis = 75 WHERE Titel = \"Sommer\"");
