@@ -17,11 +17,14 @@ public class Main {
 		dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM künstler;");
 		//dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
 		
-		
+		// Manipulationen
+		// INSERT INTO - ein neues Bild
 		dbzugriff.manipulationDBZugriff("admin", "123456", "INSERT INTO bilder(Bild_Nr,Titel,Künstler,Breite,Höhe,Preis) VALUES(6,\"Sommer\", 2, 30, 30, 65);");
+		// UPDATE - ein neuer Preis furs Bild "Sommer" 
 		dbzugriff.manipulationDBZugriff("admin", "123456", "UPDATE bilder SET Preis = 75 WHERE Titel = \"Sommer\"");
+		// DELETE das Bild mit Bild_Nr 6
 		dbzugriff.manipulationDBZugriff("admin", "123456", "DELETE FROM bilder WHERE Bild_Nr = 6");
-		
+		// UPDATE alle Preise auf 10 Euro vermindern
 		System.out.println(dbzugriff.manipulationDBZugriff("admin", "123456", "UPDATE bilder SET Preis = Preis - 10"));
 		
 		// Testen Methode equalsBilder(). Erzeugen 1 Künstler und 2 Bilder.
