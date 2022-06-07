@@ -25,7 +25,7 @@ public class Main {
 		// DELETE das Bild mit Bild_Nr 6
 		dbzugriff.manipulationDBZugriff("admin", "123456", "DELETE FROM bilder WHERE Bild_Nr = 6");
 		// UPDATE alle Preise auf 10 Euro vermindern
-		System.out.println(dbzugriff.manipulationDBZugriff("admin", "123456", "UPDATE bilder SET Preis = Preis - 10"));
+		// System.out.println(dbzugriff.manipulationDBZugriff("admin", "123456", "UPDATE bilder SET Preis = Preis - 10"));
 		
 		// Testen Methode equalsBilder(). Erzeugen 1 Künstler und 2 Bilder.
 		Kuenstler froh = new Kuenstler(3);
