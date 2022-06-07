@@ -3,8 +3,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import Prog1Tools.IOTools;
-
 public class DBZugriff {
 
 	private final String url = "jdbc:mysql://127.0.0.1:3306";

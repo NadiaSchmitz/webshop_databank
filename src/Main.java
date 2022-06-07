@@ -1,4 +1,3 @@
-import Prog1Tools.IOTools;
 
 public class Main {
 

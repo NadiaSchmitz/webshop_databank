@@ -9,12 +9,9 @@ public class Bilder {
 	private double preis;
 	
 	// Konstruktoren
-	public Bilder() {
-		
-	}
-	
 	public Bilder(int bild_Nr) {
 		this.bild_Nr = bild_Nr;
+		
 	}
 	
 	public Bilder(int bild_Nr, String titel, Kuenstler kuenstler, int breite, int hohe, double preis) {
