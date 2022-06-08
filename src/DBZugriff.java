@@ -8,8 +8,8 @@ public class DBZugriff {
 	private final String url = "jdbc:mysql://127.0.0.1:3306";
 	private String nutzer;
 	private String passwort;
-	private String databank = "atelier";
-	private String befehl;
+	protected String databank = "atelier";
+	protected String befehl;
 	Connection my_connection;
 	private boolean verbindungsstand;
 	private String verbindungsstandbericht;
@@ -122,9 +122,9 @@ public class DBZugriff {
 	
 	// Abfragen Tabelle Künstler und Bilder
 	public void anfrageDBZugriff(String nutzer, String passwort, String befehl) {
-		this.nutzer = nutzer;
-		this.passwort = passwort;
-		this.befehl = befehl;
+//		this.nutzer = nutzer;
+//		this.passwort = passwort;
+//		this.befehl = befehl;
 		
 		try {
 			openConnection(nutzer, passwort);
@@ -135,6 +135,7 @@ public class DBZugriff {
 			ResultSet my_result = my_statement.executeQuery(befehl);
 			
 			String result = "";
+			int anzahl = 0;
 			
 			// Block für SELECT Abfrage - dbzugriff.anfrageDBZugriff("admin", "123456", "SELECT * FROM bilder;");
 			System.out.printf("\n %-15s %-15s %-15s %-25s %-15s %-15s", "Kunstler_Nr", "Vorname", 
@@ -148,6 +149,7 @@ public class DBZugriff {
 						my_result.getInt("Künstler_Nr"), my_result.getString("Vorname"), 
 						my_result.getString("Nachname"), my_result.getString("Adresse"), 
 						my_result.getInt("PLZ"), my_result.getString("Wohnort"));
+				anzahl++;
 			}
 			
 			System.out.println();
@@ -158,7 +160,7 @@ public class DBZugriff {
 //			System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", "Bild_Nr", "Titel", "Künstler_Nr", "Breite", "Höhe", "Preis");
 //			while (my_result.next()) {
 //				result = result.concat("\n" + my_result.getInt("Bild_Nr") + "  " 
-//				+  my_result.getString("Titel") + "  " + my_result.getInt("Künstler") + "  " 
+//				+ my_result.getString("Titel") + "  " + my_result.getInt("Künstler") + "  " 
 //				+ my_result.getInt("Breite") + "  " + my_result.getInt("Höhe") + "  " 
 //				+ my_result.getDouble("Preis"));
 //				System.out.printf("\n %-15s %-20s %-15s %-15s %-15s %-15s", 

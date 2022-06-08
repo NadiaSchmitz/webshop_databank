@@ -7,10 +7,10 @@ public class Bilder {
 	private int breite;
 	private int hohe;
 	private double preis;
-	
+	private DBZugriffBilder dbzugriff_bilder;
+		
 	// Konstruktoren
-	public Bilder(int bild_Nr) {
-		this.bild_Nr = bild_Nr;
+	public Bilder() {
 		
 	}
 	
@@ -18,6 +18,14 @@ public class Bilder {
 		this.bild_Nr = bild_Nr; 
 		this.titel = titel;
 		this.kuenstler = kuenstler;
+		this.breite = breite;
+		this.hohe = hohe;
+		this.preis = preis;
+	}
+	
+	public Bilder(int bild_Nr, String titel, int breite, int hohe, double preis) {
+		this.bild_Nr = bild_Nr; 
+		this.titel = titel;
 		this.breite = breite;
 		this.hohe = hohe;
 		this.preis = preis;
@@ -42,6 +50,14 @@ public class Bilder {
 
 	public void setKuenstler(Kuenstler kuenstler) {
 		this.kuenstler = kuenstler;
+	}
+
+	public DBZugriffBilder getDbzugriff_bilder() {
+		return dbzugriff_bilder;
+	}
+
+	public void setDbzugriff_bilder(DBZugriffBilder dbzugriff_bilder) {
+		this.dbzugriff_bilder = dbzugriff_bilder;
 	}
 
 	public int getBreite() {

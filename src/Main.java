@@ -33,6 +33,21 @@ public class Main {
 		Bilder bild_2 = new Bilder(5, "Am Spielplatz", froh, 90, 90, 460);
 		
 		bild_1.equalsBilder(bild_2);
+		
+		DBZugriffBilder dbzugriff_bilder = new DBZugriffBilder();
+		
+		// Neues Bild speichern mit Klasse DBZugriff
+		Bilder bild_fluss = new Bilder(6, "Fluss", froh, 30, 30, 120.0);
+		String fluss_befehl = dbzugriff_bilder.neuesBildSpeicher(bild_fluss);
+		dbzugriff.manipulationDBZugriff("admin", "123456", fluss_befehl);
+		
+		// Neues Bild speichern mit Klasse DBZugriff
+		Bilder bild_schule = new Bilder(7, "Schule", froh, 120, 70, 235.0);
+		String schule_befehl = dbzugriff_bilder.neuesBildSpeicher(bild_schule);
+		dbzugriff.manipulationDBZugriff("admin", "123456", schule_befehl);
+		
+		dbzugriff_bilder.erstelleArtikelListe("admin", "123456", "SELECT * FROM bilder");
+		
 	}
 
 }
