@@ -27,12 +27,14 @@ public class DBZugriffBilder extends DBZugriff {
 	public void setBefehl_bild(String befehl_bild) {
 		this.befehl_bild = befehl_bild;
 	}
-
-	public String neuesBildSpeicher(Bilder bild) {
+	
+	// Einen neuen Artikel erfassen
+	public String erfasseNeuenArtikel(Bilder bild) {
 		befehl_bild = "INSERT INTO bilder(Bild_Nr, Titel, Künstler, Breite, Höhe, Preis) VALUES(" + bild.getBild_Nr() + ", '" + bild.getTitel() + "' , " + bild.getKuenstler().getKuenstler_Nr() + ", " + bild.getBreite() + ", " + bild.getHohe() + ", " + bild.getPreis() +");";
 		return befehl_bild;
 	}
 	
+	// Liste der Artikel erstellen
 	public void erstelleArtikelListe(String nutzer, String passwort, String befehl) {
 		
 		try {
@@ -87,6 +89,7 @@ public class DBZugriffBilder extends DBZugriff {
 		}
 	}
 	
+	// Artikel min einer bestimmten Nummer abfragen, ein Objekt machen und speichern
 	public void ladeArtikel(String nutzer, String passwort, int bild_nummer) {
 		
 		try {
@@ -121,7 +124,7 @@ public class DBZugriffBilder extends DBZugriff {
 			System.out.println();
 			System.out.println();
 			
-			// Ausgabe aus der Liste
+			// Ausgabe aus dem gespeicherten Objekt
 			System.out.println("Ausgabe aus dem Objekt");
 			System.out.printf("\n %-15s %-20s %-15s %-15s %-15s", "Bild_Nr", "Titel", "Breite", "Höhe", "Preis");
 			System.out.printf("\n %-15s %-20s %-15s %-15s %-15s", bild.getBild_Nr(), bild.getTitel(), bild.getBreite(), bild.getHohe(), bild.getPreis());
@@ -133,10 +136,11 @@ public class DBZugriffBilder extends DBZugriff {
 			closeConnection(nutzer);	
 		}
 		catch(Exception e) {
-			System.out.println("Liste der Bilder. Es ist ein Fehler aufgetreten.");
+			System.out.println("Daten des Bildes. Es ist ein Fehler aufgetreten.");
 		}
 	}
 	
+	// Überprüft, ob eine Nummer des Artikels schon vergeben wurde
 	public boolean istArtNrVergeben(String nutzer, String passwort, int bild_n) {
 		boolean is_vergeben = false;
 		try {
@@ -176,6 +180,7 @@ public class DBZugriffBilder extends DBZugriff {
 		return is_vergeben;
 	}
 	
+	// Ändert einen bestimmten Artikel
 	public boolean aendereArtikel(String nutzer, String passwort, Bilder bild) {
 		boolean result;
 		
@@ -204,6 +209,7 @@ public class DBZugriffBilder extends DBZugriff {
 		return result;
 	}
 	
+	// Löscht einen Artikel mit Bild_Nr = bild_n
 	public boolean loescheArtikel(String nutzer, String passwort, int bild_n) {
 		boolean result;
 		

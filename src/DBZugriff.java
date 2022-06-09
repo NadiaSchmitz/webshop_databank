@@ -113,9 +113,9 @@ public class DBZugriff {
 	// Verbindungsstandbericht
 	public String verbindungsstandberichtText() {
 		if (verbindungsstand) {
-			verbindungsstandbericht = "Verbindung ist geöffnet.";
+			verbindungsstandbericht = "Verbindung ist geöffnet.\n";
 		} else {
-			verbindungsstandbericht = "Verbindung ist geschlossen.";
+			verbindungsstandbericht = "Verbindung ist geschlossen.\n";
 		}
 		return verbindungsstandbericht;
 	}

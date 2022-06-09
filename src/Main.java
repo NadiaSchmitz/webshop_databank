@@ -3,8 +3,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//String nutzer, passwort;
-		
 		// Treiber Test 
 		DBZugriff dbzugriff = new DBZugriff();
 		
@@ -37,25 +35,30 @@ public class Main {
 		// Neues Objekt DBZugriffBilder
 		DBZugriffBilder dbzugriff_bilder = new DBZugriffBilder();
 		
-		// Neues Bild speichern mit Klasse DBZugriffBilder
+		// Einen neuen Artikel erfassen mit Klasse DBZugriffBilder
 		Bilder bild_fluss = new Bilder(6, "Fluss", froh, 30, 30, 120.0);
-		String fluss_befehl = dbzugriff_bilder.neuesBildSpeicher(bild_fluss);
+		String fluss_befehl = dbzugriff_bilder.erfasseNeuenArtikel(bild_fluss);
 		System.out.println("Neues Bild Fluss: " + dbzugriff_bilder.manipulationDBZugriff("admin", "123456", fluss_befehl));
 		
 		// Neues Bild speichern mit Klasse DBZugriffBilder - falsche Nummer
 		Bilder bild_schule = new Bilder(6, "Schule", froh, 120, 70, 235.0);
-		String schule_befehl = dbzugriff_bilder.neuesBildSpeicher(bild_schule);
+		String schule_befehl = dbzugriff_bilder.erfasseNeuenArtikel(bild_schule);
 		System.out.println("Neues Bild Schule: " + dbzugriff_bilder.manipulationDBZugriff("admin", "123456", schule_befehl));		
 		
+		// Liste der Artikel erstellen
 		dbzugriff_bilder.erstelleArtikelListe("admin", "123456", "SELECT * FROM bilder;");
 		
+		// Artikel min einer bestimmten Nummer abfragen, ein Objekt machen und speichern
 		dbzugriff_bilder.ladeArtikel("admin", "123456", 3);
 		
+		// Überprüft, ob eine Nummer des Artikels schon vergeben wurde
 		System.out.println(dbzugriff_bilder.istArtNrVergeben("admin", "123456", 3));
 		System.out.println(dbzugriff_bilder.istArtNrVergeben("admin", "123456", 10));
 		
+		// Ändert einen bestimmten Artikel
 		System.out.println(dbzugriff_bilder.aendereArtikel("admin", "123456", bild_1));
 		
+		// Löscht einen Artikel mit Bild_Nr = bild_n
 		System.out.println(dbzugriff_bilder.loescheArtikel("admin", "123456", 7));
 	}
 
