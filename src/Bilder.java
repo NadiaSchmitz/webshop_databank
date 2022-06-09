@@ -29,6 +29,8 @@ public class Bilder {
 		this.breite = breite;
 		this.hohe = hohe;
 		this.preis = preis;
+		
+		System.out.print("Neues Bild!");
 	}
 
 	// Getters und Setters, für den Parameter bild_Nr - nur Getter

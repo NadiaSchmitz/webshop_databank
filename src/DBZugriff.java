@@ -122,10 +122,7 @@ public class DBZugriff {
 	
 	// Abfragen Tabelle Künstler und Bilder
 	public void anfrageDBZugriff(String nutzer, String passwort, String befehl) {
-//		this.nutzer = nutzer;
-//		this.passwort = passwort;
-//		this.befehl = befehl;
-		
+
 		try {
 			openConnection(nutzer, passwort);
 			
@@ -183,9 +180,6 @@ public class DBZugriff {
 	// Manipulationen
 	public boolean manipulationDBZugriff(String nutzer, String passwort, String befehl) {
 		boolean result;
-		this.nutzer = nutzer;
-		this.passwort = passwort;
-		this.befehl = befehl;
 		
 		try {
 			openConnection(nutzer, passwort);
@@ -207,6 +201,5 @@ public class DBZugriff {
 		}
 		return result;
 	}
-	
 	
 }

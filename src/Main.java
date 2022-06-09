@@ -34,20 +34,29 @@ public class Main {
 		
 		bild_1.equalsBilder(bild_2);
 		
+		// Neues Objekt DBZugriffBilder
 		DBZugriffBilder dbzugriff_bilder = new DBZugriffBilder();
 		
-		// Neues Bild speichern mit Klasse DBZugriff
+		// Neues Bild speichern mit Klasse DBZugriffBilder
 		Bilder bild_fluss = new Bilder(6, "Fluss", froh, 30, 30, 120.0);
 		String fluss_befehl = dbzugriff_bilder.neuesBildSpeicher(bild_fluss);
-		dbzugriff.manipulationDBZugriff("admin", "123456", fluss_befehl);
+		System.out.println("Neues Bild Fluss: " + dbzugriff_bilder.manipulationDBZugriff("admin", "123456", fluss_befehl));
 		
-		// Neues Bild speichern mit Klasse DBZugriff
-		Bilder bild_schule = new Bilder(7, "Schule", froh, 120, 70, 235.0);
+		// Neues Bild speichern mit Klasse DBZugriffBilder - falsche Nummer
+		Bilder bild_schule = new Bilder(6, "Schule", froh, 120, 70, 235.0);
 		String schule_befehl = dbzugriff_bilder.neuesBildSpeicher(bild_schule);
-		dbzugriff.manipulationDBZugriff("admin", "123456", schule_befehl);
+		System.out.println("Neues Bild Schule: " + dbzugriff_bilder.manipulationDBZugriff("admin", "123456", schule_befehl));		
 		
-		dbzugriff_bilder.erstelleArtikelListe("admin", "123456", "SELECT * FROM bilder");
+		dbzugriff_bilder.erstelleArtikelListe("admin", "123456", "SELECT * FROM bilder;");
 		
+		dbzugriff_bilder.ladeArtikel("admin", "123456", 3);
+		
+		System.out.println(dbzugriff_bilder.istArtNrVergeben("admin", "123456", 3));
+		System.out.println(dbzugriff_bilder.istArtNrVergeben("admin", "123456", 10));
+		
+		System.out.println(dbzugriff_bilder.aendereArtikel("admin", "123456", bild_1));
+		
+		System.out.println(dbzugriff_bilder.loescheArtikel("admin", "123456", 7));
 	}
 
 }
