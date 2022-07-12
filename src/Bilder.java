@@ -14,6 +14,15 @@ public class Bilder {
 		
 	}
 	
+	public Bilder(String titel, int breite, int hohe, double preis) {
+		this.titel = titel;
+		this.breite = breite;
+		this.hohe = hohe;
+		this.preis = preis;
+		
+		System.out.print("Neues Bild!");
+	}
+	
 	public Bilder(int bild_Nr, String titel, Kuenstler kuenstler, int breite, int hohe, double preis) {
 		this.bild_Nr = bild_Nr; 
 		this.titel = titel;

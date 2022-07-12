@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
@@ -59,7 +64,40 @@ public class Main {
 		System.out.println(dbzugriff_bilder.aendereArtikel("admin", "123456", bild_1));
 		
 		// Löscht einen Artikel mit Bild_Nr = bild_n
-		System.out.println(dbzugriff_bilder.loescheArtikel("admin", "123456", 7));
+		//System.out.println(dbzugriff_bilder.loescheArtikel("admin", "123456", 7));
+		System.out.println();
+		
+		// CSV-Datei ablesen, entsprechende Objekte (bilder) erzeugen
+		String line = "";
+        String delimiter = ",";
+        
+        try {
+            String filePath = "Bilder_liste.csv";
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader reader = new BufferedReader(fileReader);
+            
+            // Solange die nächste Zeile existiert, lesen wir sie ab
+            while ((line = reader.readLine()) != null) {
+            	// String durch "," schneiden und speichern als Parameter, um weiterhin 
+            	// als Parameter des Objektes abrufen zu können
+            	String[] parameter = line.split(delimiter);
+            	// Mithilfe des Konstruktors ein neues Bild erzeugen und jeden Parameter 
+            	// umwandeln, um einen korrekten Datentyp zu bekommen
+            	// Künstler wird als ein Objekt eingetragen
+            	Bilder bild = new Bilder(Integer.parseInt(parameter[0]), parameter[1], froh, 
+            			Integer.parseInt(parameter[3]), Integer.parseInt(parameter[4]), 
+            			Double.parseDouble(parameter[5]));
+            	// Wird früher entwickelte Methode bild_befehl benutzt, um einen entsprechenden sql-befehl 
+            	// zu erfassen und dies in die Datenbank auszuführen
+            	String bild_befehl = dbzugriff_bilder.erfasseNeuenArtikel(bild);
+            	// Bericht, ob Zugriff erfolgreich oder nicht erfolgreich war
+        		System.out.println("Neues Bild aus der Liste: " + dbzugriff_bilder.manipulationDBZugriff("admin", "123456", bild_befehl));
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+		
 	}
 
 }
